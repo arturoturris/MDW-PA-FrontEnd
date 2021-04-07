@@ -9,7 +9,7 @@ $(document).ready(function(){
         }
         if (option == 1){
             $("#pupil-option").hide();
-            $("#teacher-option").show("slow");            
+            $("#teacher-option").show("slow");          
         }
     });
 });

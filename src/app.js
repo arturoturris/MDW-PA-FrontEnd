@@ -17,6 +17,7 @@ app.use(express.json())
 
 //ROUTES
 app.use('/',require('./routes/index'))
+app.use('/dashboard',require('./routes/profesor'));
 
 //SERVER
 app.listen(app.get('port'), (req,res) => {

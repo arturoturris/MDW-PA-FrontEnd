@@ -10,7 +10,7 @@ app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 
 //MIDDLEWARES
-app.use(express.static(path.join(__dirname,'public')))
+app.use('/public',express.static(path.join(__dirname,'public')))
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())

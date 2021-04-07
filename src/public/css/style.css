@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #4448ff;
+  --primary-color: #007bff;
   --text: rgb(71, 71, 71);
   --shadow: rgba(0, 0, 0, 0.15);
 }
@@ -118,6 +118,14 @@ section > header a {
   align-self: flex-end;
 }
 
+.content {
+  margin-left: 250px !important;
+}
+
+.card {
+  border: 2px solid black !important;
+}
+
 @media screen and (min-width: 720px) {
   .main-grid {
     display: grid;
@@ -176,5 +184,11 @@ section > header a {
 
   .nav-option span {
     text-align: left;
+  }
+
+  .content {
+    margin-left: auto !important;
+    margin-top: 50px !important;
+    position: relative;
   }
 }

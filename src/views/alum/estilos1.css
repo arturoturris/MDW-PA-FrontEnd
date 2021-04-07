@@ -1,0 +1,53 @@
+body{
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+}
+
+.padre-flex{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .padre-flex > div{
+    text-align: center;
+  }
+
+
+.right {
+    position: absolute;
+    right: 0px;
+  }
+
+.sidenav{
+    height: 100%;
+    width: 250px;
+    background-color: #007BFF;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    border-right: 3px solid white;
+}
+.contenido{
+    margin-left: 250px !important;
+}
+.img-profile{
+    width: 200px  !important;
+    height: 200px !important;
+}
+.card{
+    border: 2px solid black !important; 
+}
+
+@media (max-width: 992px) {
+    .sidenav {
+        display: none;
+        /* height: 100%; */
+    }
+    .contenido{
+        margin-left: auto !important;
+        margin-top: 50px !important;
+        position: relative;
+    }
+}

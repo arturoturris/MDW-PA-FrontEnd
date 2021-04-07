@@ -38,23 +38,31 @@ router.get('/',(req,res)=>{
     });
 });
 
+router.get('/details',(req,res)=>{
+    res.render("profesor/details_project",{
+        pageTitle:"Detalles de Proyecto",
+        username:"Nombre ApellidoP ApellidoM"
+    })
+})
+
 router.get('/:NRC',(req,res)=>{
     console.log(req.params);
     let projects=[
         {
             name:"Proyecto X",
             responsable: "Alumno responsable",
+            id:"12"
 
         },
         {
             name:"Proyecto X",
             responsable: "Alumno responsable",
-            
+            id:"123"
         },
         {
             name:"Proyecto X",
             responsable: "Alumno responsable",
-            
+            id:"1234"
         }
     ];
     res.render("profesor/subjects",{
@@ -63,5 +71,6 @@ router.get('/:NRC',(req,res)=>{
         projects:projects
     });
 });
+
 
 module.exports=router;

@@ -12,7 +12,33 @@ function renderSignIn(req,res){
     res.render('login/login',{pageTitle: 'Inicio de Sesión',apiUrl: API_URL})
 }
 
+async function signedIn(req,res,next){
+    const token = req.cookies.token
+
+    if(!token) return renderSignIn(req,res)
+
+    //CHECK IF VALID TOKEN
+    return fetch(`${API_URL}authorize`,{
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(async res => {
+        if(res.status === 200){
+            req.usuario = await res.json()
+            return next()
+        }
+        else
+            return renderSignIn(req,res)
+    })
+    .catch(err => {
+        return renderSignIn(req,res)
+    })
+}
+
 module.exports = {
     renderSignUp,
-    renderSignIn
+    renderSignIn,
+    signedIn
 }

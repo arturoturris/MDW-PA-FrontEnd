@@ -7,8 +7,7 @@ function signIn(e) {
         email: `${e.target.querySelector('[name="email"]').value}`,
         contrasena: `${e.target.querySelector('[name="contrasena"]').value}`
     })
-
-    console.log(body)
+    
     const url = e.target.action
 
     fetch(url,{
@@ -19,6 +18,8 @@ function signIn(e) {
     .then(async res => {
         let obj
 
+        console.log(res)
+
         if(res.status === 200)
             obj = {status: res.status, ...(await res.json())}
         else
@@ -28,34 +29,15 @@ function signIn(e) {
     })
     .then(res => {
         if(res.status === 200){
-            localStorage.setItem('token',res.token)   
+            document.cookie = `token=${res.token}`
             alert('AUTENTICADO')
-            loadLandingPage()
+            window.location.reload()
         }
         else{
             alert(res.message)
         }
     })
     .catch(err => {console.error(err)})
-}
-
-function loadLandingPage(){
-    fetch(`${API_URL}authorize`,{
-        method: 'GET',
-        headers: new Headers({
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        })
-    })
-    .then(async res => {
-        return {status: res.status, ...(await res.json())}
-    })
-    .then(res => {
-        if(res.rol === 'ALUMNO')
-            window.location.href = 'http://localhost:3000/proyectos'
-        else
-            window.location.href = 'http://localhost:3000/dashboard'
-    })
-    .catch(err => console.error(err))
 }
 
 document.querySelector('form').addEventListener('submit',e => signIn(e))

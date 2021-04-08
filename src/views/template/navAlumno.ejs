@@ -1,25 +1,25 @@
 <nav>
     <ul>
         <li>
-            <a href="/alumno" class="<%= pageTitle == 'Proyectos' ? 'nav-option active' : 'nav-option' %>">
+            <a href="/alumno" class="<%= menuSelection == 'Proyectos' ? 'nav-option active' : 'nav-option' %>">
                 <i class="fas fa-pencil-ruler"></i>
                 <span>Proyectos</span>
             </a>
         </li>
         <li>
-            <a href="#" class="<%= pageTitle == 'Tareas' ? 'nav-option active' : 'nav-option' %>">
+            <a href="#" class="<%= menuSelection == 'Tareas' ? 'nav-option active' : 'nav-option' %>">
                 <i class="fas fa-tasks"></i>
                 <span>Tareas</span>
             </a>
         </li>
         <li>
-            <a href="#" class="<%= pageTitle == 'Notificaciones' ? 'nav-option active' : 'nav-option' %>">
+            <a href="#" class="<%= menuSelection == 'Notificaciones' ? 'nav-option active' : 'nav-option' %>">
                 <i class="fas fa-bell"></i>
                 <span>Notificaciones</span>
             </a>
         </li>
         <li>
-            <a href="#" id="sign-out" class="<%= pageTitle == 'Cerrar Sesión' ? 'nav-option active' : 'nav-option' %>">
+            <a href="#" id="sign-out" class="<%= menuSelection == 'Cerrar Sesión' ? 'nav-option active' : 'nav-option' %>">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Cerrar sesión</span>
             </a>

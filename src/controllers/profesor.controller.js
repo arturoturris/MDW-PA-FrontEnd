@@ -33,6 +33,7 @@ function renderMaterias(req,res){
         pageTitle:"Materias",
         username:`${req.usuario.nombre}`,
         subjects: subjects,
+        menuSelection: 'Materias',
         role: 'PROFESOR'
     });
 }
@@ -41,6 +42,7 @@ function renderDetalles(req,res){
     res.render("profesor/details_project",{
         pageTitle:"Detalles de Proyecto",
         username:`${req.usuario.nombre}`,
+        menuSelection: 'Materias',
         role: 'PROFESOR'
     })
 }
@@ -69,6 +71,7 @@ function renderMateria(req,res){
         pageTitle:"Proyectos",
         username:`${req.usuario.nombre}`,
         projects:projects,
+        menuSelection: 'Materias',
         role: 'PROFESOR'
     });
 }

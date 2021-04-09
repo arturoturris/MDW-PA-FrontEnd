@@ -11,10 +11,10 @@
   font-family: "Roboto", sans-serif;
 }
 
-body {
+/* body {
   height: 100vh;
   overflow: hidden;
-}
+} */
 
 .main-grid {
   display: grid;
@@ -29,7 +29,7 @@ body {
 .main-grid > main {
   background: white;
   grid-area: main;
-  margin: 0 1rem;
+  margin: 0 1rem 1rem;
 }
 
 .main-grid > header {
@@ -37,6 +37,8 @@ body {
   position: sticky;
   bottom: 0;
   left: 0;
+  z-index: 999;
+  overflow: hidden;
 }
 
 header .profile {
@@ -131,8 +133,8 @@ section > header a {
     display: grid;
     grid-template-areas: "header main";
     grid-template-columns: minmax(50px, 250px) minmax(540px, 1fr);
-    grid-template-rows: 100vh;
-    overflow: hidden;
+    grid-template-rows: minmax(100vh, 1fr);
+    /* overflow: hidden; */
   }
 
   header .profile {
@@ -162,6 +164,8 @@ section > header a {
 
   .main-grid > header {
     box-shadow: 0 5px 10px var(--shadow);
+    height: 100vh;
+    top: 0;
   }
 
   .main-grid > header nav {

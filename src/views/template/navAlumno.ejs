@@ -1,26 +1,26 @@
 <nav>
     <ul>
         <li>
-            <a href="/" class="<%= pageTitle == 'Inicio' ? 'nav-option active' : 'nav-option' %>">
-                <i class="fas fa-home"></i>
+            <a href="/alumno" class="<%= menuSelection == 'Proyectos' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-pencil-ruler"></i>
                 <span>Proyectos</span>
             </a>
         </li>
         <li>
-            <a href="/clientes" class="<%= pageTitle == 'Clientes' ? 'nav-option active' : 'nav-option' %>">
-                <i class="fas fa-users"></i>
+            <a href="#" class="<%= menuSelection == 'Tareas' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-tasks"></i>
                 <span>Tareas</span>
             </a>
         </li>
         <li>
-            <a href="#" class="<%= pageTitle == 'Recibos' ? 'nav-option active' : 'nav-option' %>">
-                <i class="fas fa-file-invoice-dollar"></i>
+            <a href="#" class="<%= menuSelection == 'Notificaciones' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-bell"></i>
                 <span>Notificaciones</span>
             </a>
         </li>
         <li>
-            <a href="#" class="<%= pageTitle == 'Extra' ? 'nav-option active' : 'nav-option' %>">
-                <i class="fas fa-tasks"></i>
+            <a href="#" id="sign-out" class="<%= menuSelection == 'Cerrar Sesión' ? 'nav-option active' : 'nav-option' %>">
+                <i class="fas fa-sign-out-alt"></i>
                 <span>Cerrar sesión</span>
             </a>
         </li>

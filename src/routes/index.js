@@ -1,16 +1,27 @@
 const {Router} = require('express')
 const router = Router()
+const loginController = require('../controllers/login.controller')
 
-router.get('/',(req,res) => {
-    //REVISAR SI ESTÁ LOGGEADO PARA DESPLEGAR LA PAGINA DE INICIO CORRESPONDIENTE
-    res.render('login/login',{pageTitle: 'Inicio de Sesión'})
+//LOGIN
+router.use('/registro',loginController.renderSignUp)
+router.use('/',loginController.signedIn) //SI ESTÁ LOGGEADO ENTONCES CARGA LAS DEMAS RUTAS
+
+//A PARTIR DE AQUI SE PUEDE USAR EL OBJETO (req.user)
+
+//ALUMNO
+router.use('/alumno',require('./alumno'))
+
+//PROFESOR
+router.use('/profesor',require('./profesor'))
+
+router.use('/',(req,res) => {
+    if(req.usuario.rol === 'ALUMNO')
+        res.redirect('/alumno')
+    else if(req.usuario.rol === 'PROFESOR')
+        res.redirect('/profesor')
+    else{
+        //PAGINA 404
+    }
 })
-
-router.get('/register',(req,res) => {
-    res.render('login/register',{pageTitle: 'Registro'})
-})
-
-
-// router.use('/',require('./clientes'))
 
 module.exports = router

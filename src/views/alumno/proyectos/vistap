@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos1.css">
+    <title>Vista del proyecto</title>
+</head>
+<body>
+    <div class="sidenav text-center">
+        <img class="rounded-circle img-fluid img-profile" src="img/1.png">
+        <h2 class="display-6">X</h2>
+        <br><br>
+        <div class="align-items-center minh-100">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action lg-side-item"><a class="side-item" href="#">Mis proyectos</a></li>
+                <li class="list-group-item list-group-item-action lg-side-item"><a class="side-item" href="tareas">Mis tareas</a></li>
+                <li class="list-group-item list-group-item-action lg-side-item"><a class="side-item" href="notificaciones">Notificaciones</a></li>                
+                <li class="list-group-item list-group-item-action lg-side-item"><a class="side-item" href="#">Cerrar sesi&oacute;n</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-primary navbar-primary fixed-top d-lg-none">
+        <a class="navbar-brand" href="#">
+            <img src="img/1.png" class="img-fluid" alt="logo" style="width:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav w-100 justify-content-between">
+                <li class="nav-item">
+                <a class="nav-link text-white" href="#">Mis proyectos</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-white" href="tareas">Mis tareas</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-white" href="notificaciones">Notificaciones</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Cerrar sesi&oacute;n</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="contenido">
+        <div class="container-fluid">
+            <br><br>
+            <div class="row">
+                <div class="col">
+                    <h1>Proyectos activos</h1>
+                    <br>
+                    <h6>Descripción del proyecto</h6>
+                </div>
+                <div class="col">
+                    <h6>Materia: Modelos de Desarrollo Web</h6>
+                    <br>
+                    <h6>Profesor: Mario Anzures</h6>
+                </div>
+                <div class="col"></div>
+              </div>
+            <br><br>
+            <div class="container p-3 my-3 bg-dark text-white">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">Ciclo de vida</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">Equipo</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">Resumen</a>
+                    </li>
+                  </ul>
+            </div>
+            <br><br>
+            <h3 align="center">Mis Notificaciones</h3>
+            <div class="right">
+                <a href="nuevop" class="btn btn-primary">Agregar Etapa</a>
+            </div>
+            <br><br>
+            <br><br>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="card border border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Planeación</h5>
+                            <p class="card-text"><strong>Estado: </strong> Finalizado</p>
+                            <p class="card-text"><strong>Fecha Inicio: </strong>12/02/2021</p>
+                            <p class="card-text"><strong>Fecha Fin: </strong>13/02/2021</p>
+                            <a href="#" class="btn btn-primary">Ver Etapa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="card border border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Elaboración</h5>
+                            <p class="card-text"><strong>Estado: </strong> Finalizado</p>
+                            <p class="card-text"><strong>Fecha Inicio: </strong>14/02/2021</p>
+                            <p class="card-text"><strong>Fecha Fin: </strong>15/02/2021</p>
+                            <a href="#" class="btn btn-primary">Ver Etapa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="card border border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Cierre</h5>
+                            <p class="card-text"><strong>Estado: </strong> En Curso</p>
+                            <p class="card-text"><strong>Fecha Inicio: </strong>17/02/2021</p>
+                            <p class="card-text"><strong>Fecha Fin: </strong>N/A</p>
+                            <a href="#" class="btn btn-primary">Ver Etapa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

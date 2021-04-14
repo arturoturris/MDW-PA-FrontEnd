@@ -6,7 +6,7 @@ const loginController = require('../controllers/login.controller')
 router.use('/registro',loginController.renderSignUp)
 router.use('/',loginController.signedIn) //SI ESTÁ LOGGEADO ENTONCES CARGA LAS DEMAS RUTAS
 
-//A PARTIR DE AQUI SE PUEDE USAR EL OBJETO (req.user)
+//A PARTIR DE AQUI SE PUEDE USAR EL OBJETO (req.usuario)
 
 //ALUMNO
 router.use('/alumno',require('./alumno'))

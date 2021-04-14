@@ -1,35 +1,32 @@
-<div class="row justify-content-center">
-  <div class="container">
-      <h2>Datos generales</h2>
-      <br><br>
-      <form action="/action_page.php">
-        <div class="form-group">
-          <label for="nombreproyecto">Nombre del proyecto:</label>
-          <input type="" class="form-control" id="nomp" placeholder="Introducir nombre del proyecto" name="nomp">
-        </div>
-        <div class="form-group">
-          <label for="comment">Descripción:</label>
-          <textarea class="form-control" rows="5" id="comment" placeholder="Introducir descripción del proyecto" name="text"></textarea>
-        </div>
-        <label for="start">Fecha de Inicio:</label>
-          <input type="date" id="start" name="trip-start" value="2021-01-01" min="2018-01-01" max="2021-12-31">
-      <br>
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option selected>Materia</option>
-          <option value="1">Modelos de Desarrollo Web</option>
-          <option value="2">Inteligencia Artificial</option>
-          <option value="3">Control de calidad de Software</option>
-        </select>
-        <div class="form-group">
-          <label for="">Equipo:</label>
-          <input type="" class="form-control" id="" placeholder="Introduce a un miembro del equipo" name="">
-          <br>
-          <input type="" class="form-control" id="" placeholder="Introduce a un miembro del equipo" name="">
-          <br>
-          <input type="" class="form-control" id="" placeholder="Introduce a un miembro del equipo" name="">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Crear Proyecto</button>
-    </form>
-  </div>
-</div>
+<form action="" class="row justify-content-center mx-2" method="POST">
+  <fieldset class="col-12 row border p-2">
+    <legend class="font-weight-bold w-auto">Datos generales</legend>
+    <div class="form-group col-md-6 col-sm-12">
+      <label for="nombreproyecto" class="font-weight-bold">Nombre del proyecto:</label>
+      <input type="text" class="form-control" id="nombreproyecto" placeholder="Introducir nombre del proyecto" name="nombre_proyecto"  required>
+    </div>
+    <div class="form-group col-md-6 col-sm-12">
+      <label for="descripcion" class="font-weight-bold">Descripción:</label>
+      <input type="text" class="form-control" id="descripcion" placeholder="Introducir descripción del proyecto" name="descripcion" required>
+    </div>
+    <div class="form-group col-md-6 col-sm-12">
+      <label for="fecha_inicio" class="font-weight-bold">Fecha de Inicio:</label>
+      <input type="date" class="form-control" id="fecha_inicio" min="2018-01-01" max="2021-12-31" name="fecha_inicio" required>
+    </div>
+    <div class="form-group col-md-6 col-sm-12">
+      <label for="fecha_limite" class="font-weight-bold">Fecha límite:</label>
+      <input type="date" class="form-control" id="fecha_limite" min="2018-01-01" max="2021-12-31" name="fecha_limite" required>
+    </div>
+    <div class="form-group col-md-6 col-sm-12">
+      <label for="materia" class="font-weight-bold">Materia:</label>
+      <select class="custom-select" id="materias" name="nrc" required>
+        <option value="" disabled selected>Materias</option>
+        <% for(let materia of materias) { %>
+          <option value="<%= materia.nrc %>"><%= `${materia.nrc} - ${materia.nombre}` %></option>
+        <% } %>
+      </select>
+    </div>
+  </fieldset>
+  <%- include('./equipo.ejs') %>
+  <button type="submit" class="btn btn-block btn-primary my-4">Crear Proyecto</button>
+</form>

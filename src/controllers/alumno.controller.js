@@ -14,14 +14,16 @@ async function renderProyectos(req,res){
 }
 
 async function renderNuevoProyecto(req,res){
-    let materias = await getMateriasAlumno(req.usuario.matricula)
+    const matricula = req.usuario.matricula
+    let materias = await getMateriasAlumno(matricula)
 
     res.render('alumno/nuevoProyecto/nuevoProyecto',{
         usuario: req.usuario.nombre,
         pageTitle: 'Nuevo proyecto',
         menuSelection: 'Proyectos',
         role: 'ALUMNO',
-        materias
+        materias,
+        matricula
     })
 }
 

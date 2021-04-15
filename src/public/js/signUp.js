@@ -44,20 +44,18 @@ function signUp(e) {
         return res.json()
     })
     .then(res => {
-        console.log(res)
-<<<<<<< HEAD
-        if(res.status === 201)
-            alert('REGISTRADO')
-=======
         if(res.status === 201){
-            alert('REGISTRADO')
-            $(location).attr('href','/');
+            Swal.fire({
+                title: 'Registro éxitoso',
+                icon: 'success'
+            }).then(() => {
+                $(location).attr('href','/');
+            })
         }else{
             $("#user-encontrado").html('<div class="alert alert-danger alert-dismissible">'+
             '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
             `<strong></strong>${res.errors[0].messages[0]}</div>`);
         }
->>>>>>> b1
     })
     .catch(err => {error.log(err)})
 }

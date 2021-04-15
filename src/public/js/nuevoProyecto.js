@@ -1,4 +1,5 @@
 import {API_URL} from './config.js'
+import {LoadingBar} from './LoadingBar.js'
 
 let listaAlumnos = null
 
@@ -82,6 +83,8 @@ const cargarNuevoIntegrante = integrante => {
 const enviarFormulario = (e) => {
     e.preventDefault()
 
+    LoadingBar.show()
+
     const equipo = obtenerEquipo()
 
     const body = JSON.stringify({
@@ -90,11 +93,7 @@ const enviarFormulario = (e) => {
         fecha_limite: `${e.target.querySelector('[name="fecha_limite"]').value}`,
         nrc: `${Number.parseInt(e.target.querySelector('[name="nrc"]').value)}`,
         descripcion: `${e.target.querySelector('[name="descripcion"]').value}`,
-<<<<<<< HEAD
-        coordinador: 201749575,
-=======
         coordinador: `${Number.parseInt(e.target.querySelector('[name="coordinador"]').value)}`,
->>>>>>> b1
         equipo
     })
 
@@ -109,11 +108,15 @@ const enviarFormulario = (e) => {
         return res.json()
     })
     .then(res => {
-        console.log(res)
+        LoadingBar.close()
+
         if(res.status === 201)
             alert('PROYECTO CREADO')
     })
-    .catch(err => {error.log(err)})
+    .catch(err => {
+        LoadingBar.close()
+        error.log(err)
+    })
 }
 
 const obtenerEquipo = () => {

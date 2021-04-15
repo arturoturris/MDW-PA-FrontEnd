@@ -21,6 +21,7 @@ router.use('/',(req,res) => {
         res.redirect('/profesor')
     else{
         //PAGINA 404
+        res.send('PAGINA NO ENCONTRADA')
     }
 })
 

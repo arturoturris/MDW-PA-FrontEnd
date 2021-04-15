@@ -1,6 +1,7 @@
 <form action="" class="row justify-content-center mx-2" method="POST">
   <fieldset class="col-12 row border p-2">
     <legend class="font-weight-bold w-auto">Datos generales</legend>
+    <input type="hidden" name="coordinador" value="<%= matricula %>">
     <div class="form-group col-md-6 col-sm-12">
       <label for="nombreproyecto" class="font-weight-bold">Nombre del proyecto:</label>
       <input type="text" class="form-control" id="nombreproyecto" placeholder="Introducir nombre del proyecto" name="nombre_proyecto"  required>

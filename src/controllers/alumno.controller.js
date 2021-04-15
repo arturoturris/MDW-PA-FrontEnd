@@ -28,7 +28,7 @@ async function renderNuevoProyecto(req,res){
 }
 
 function getProyectos(matricula){
-    return fetch(`${API_URL}proyectos/${matricula}`,{
+    return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
         method: 'GET'
     })
     .then(async res => {
@@ -44,7 +44,7 @@ function getProyectos(matricula){
 }
 
 function getMateriasAlumno(matricula){
-    return fetch(`${API_URL}materias/${matricula}`,{
+    return fetch(`${API_URL}alumnos/${matricula}/materias`,{
         method: 'GET'
     })
     .then(async res => {
@@ -57,10 +57,6 @@ function getMateriasAlumno(matricula){
         console.error(err)
         return []
     })
-}
-
-function getMatriculaAlumno(id_usuario){
-
 }
 
 module.exports = {

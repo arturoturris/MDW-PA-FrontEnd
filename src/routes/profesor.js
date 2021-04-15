@@ -17,7 +17,7 @@ router.get('/cierre',
 router.get('/reporte',
     profesorController.renderReporte);
 
-router.get('/:NRC',
+router.get('/:nrc',
     profesorController.renderMateria);
 
 module.exports=router;

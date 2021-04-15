@@ -1,7 +1,10 @@
 import {API_URL} from './config.js'
+import {LoadingBar} from './LoadingBar.js'
 
 function signIn(e) {
     e.preventDefault()
+
+    LoadingBar.show()
 
     const body = JSON.stringify({
         email: `${e.target.querySelector('[name="email"]').value}`,
@@ -16,31 +19,46 @@ function signIn(e) {
         body
     })
     .then(async res => {
-        let obj
+        LoadingBar.close()
 
-        console.log(res)
-
-        if(res.status === 200)
-            obj = {status: res.status, ...(await res.json())}
-        else
-            obj = {status: res.status, message: 'Email/Contraseña inválidos.'}
-
-        return obj
+        return {
+            status: res.status,
+            ...((res.status != 401) && await res.json())
+        }
     })
     .then(res => {
-        if(res.status === 200){
+        const {status} = res
+
+        if(status === 200){
             document.cookie = `token=${res.token}`
-            alert('AUTENTICADO')
-            window.location.reload()
+            
+            Swal.fire({
+                title: 'Autenticado',
+                icon: 'success'
+            })
+            .then(() => {
+                window.location.reload()
+            })
+        }
+        else if(status == 401){
+            Swal.fire({
+                title: 'Datos erroneos',
+                text: 'Usuario / Contraseña incorrectos',
+                icon: 'warning'
+            })
         }
         else{
-            $("#user-encontrado").html('<div class="alert alert-danger alert-dismissible">'+
-            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-            `<strong></strong>${res.message}</div>`);
-            //alert(res.message)
+            Swal.fire({
+                title: 'Error del servidor',
+                text: res.error || res.message,
+                icon: 'error'
+            })
         }
     })
-    .catch(err => {console.error(err)})
+    .catch(err => {
+        LoadingBar.close()
+        console.error(err)
+    })
 }
 
 document.querySelector('form').addEventListener('submit',e => signIn(e))

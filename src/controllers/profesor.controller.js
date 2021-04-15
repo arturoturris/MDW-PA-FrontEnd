@@ -2,75 +2,73 @@ const {API_URL} = require('../config/config')
 const fetch = require('node-fetch')
 
 function renderMaterias(req,res){
-    let subjects = [
-        {
-            name:"Metodologias de desarrollo web",
-            term:"Primavera",
-            NRC:"XER"
-        },
-        {
-            
-            name:"Tecnologías Web",
-            term:"Primavera",
-            NRC:"ASZ"
-        },
-        {
-            name:"Herramientas Web",
-            term:"Primavera",
-            NRC:"AWD"
-        },
-        {
-            name:"Desarrollo de Sitios Web",
-            term:"Primavera",
-            NRC:"ZAS"
-        },
-        {
-            name:"Desarrollo de Sitios Web",
-            term:"Primavera",
-            NRC:"ZAS"
-        }];
-    res.render("profesor/dashboard",{
-        pageTitle:"Materias",
-        usuario:`${req.usuario.nombre}`,
-        subjects: subjects,
+    fetch(`${API_URL}profesores/${req.usuario.matricula}/materias`)
+    .then(promiseFetch=>promiseFetch.json())
+    .then(subjects => {
+        res.render('profesor/dashboard',{
+            pageTitle: 'Materias',
+            usuario: req.usuario.nombre,
+            subjects,
+            menuSelection: 'Materias',
+            role: 'PROFESOR'
+        })
+    })
+    .catch(error => res.send(error))
+}
+
+function renderDetalles(req,res){
+    fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
+    .then(promiseFetch=>promiseFetch.json())
+    .then(details => {
+        res.render("profesor/details_project",{
+            pageTitle:"Detalles de Proyecto",
+            usuario: req.usuario.nombre,
+            details,
+            menuSelection: 'Materias',
+            role: 'PROFESOR'
+        })
+    });
+}
+
+function renderMateria(req,res){
+    fetch(`${API_URL}materias/${req.params.nrc}/proyectos`)
+    .then(promiseFetch=>promiseFetch.json())
+    .then(projects => {
+        res.render("profesor/subjects",{
+            pageTitle:"Proyectos",
+            usuario: req.usuario.nombre,
+            projects,
+            menuSelection: 'Materias',
+            role: 'PROFESOR'
+        })
+    });
+}
+
+function renderAsignacion(req,res){
+    res.render("profesor/asignacion",{
+        pageTitle:"Asignacion",
+        usuario: req.usuario.nombre,
+        //projects:projects,
         menuSelection: 'Materias',
         role: 'PROFESOR'
     });
 }
 
-function renderDetalles(req,res){
-    res.render("profesor/details_project",{
-        pageTitle:"Detalles de Proyecto",
+function renderCierre(req,res){
+    res.render("profesor/cierre",{
+        pageTitle:"Cierre",
         usuario:`${req.usuario.nombre}`,
+        //projects:projects,
         menuSelection: 'Materias',
         role: 'PROFESOR'
-    })
+    });
 }
 
-function renderMateria(req,res){
-    console.log(req.params);
-    let projects=[
-        {
-            name:"Proyecto X",
-            responsable: "Alumno responsable",
-            id:"12"
-
-        },
-        {
-            name:"Proyecto X",
-            responsable: "Alumno responsable",
-            id:"123"
-        },
-        {
-            name:"Proyecto X",
-            responsable: "Alumno responsable",
-            id:"1234"
-        }
-    ];
-    res.render("profesor/subjects",{
-        pageTitle:"Proyectos",
+function renderReporte(req,res){
+    res.render("profesor/reporte",{
+        pageTitle:"Reporte General",
         usuario:`${req.usuario.nombre}`,
-        projects:projects,
+        //projects:projects,
         menuSelection: 'Materias',
         role: 'PROFESOR'
     });
@@ -79,5 +77,8 @@ function renderMateria(req,res){
 module.exports = {
     renderMaterias,
     renderDetalles,
-    renderMateria
+    renderMateria,
+    renderAsignacion,
+    renderCierre,
+    renderReporte
 };

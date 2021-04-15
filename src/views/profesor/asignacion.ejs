@@ -1,0 +1,81 @@
+<%- include('../template/head'); %>
+<div class="main-grid">
+    <%- include('../template/header.ejs') %>
+    <main>
+        <section>
+            <main>
+                <h2 class="display-4">Proyecto 1</h2>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h4>Descripci&oacute;n</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae veniam voluptatibus numquam corporis nulla quod dolor vero quis dignissimos. Quos unde dignissimos pariatur fugiat quae vel? Aliquid ea perferendis aperiam.</p> 
+                    </div>
+                    <div class="col-4">
+                        <div class="row col-lg-6 col-sm-12 mt-3 justify-content-end">
+                            <p class="col-12"><strong>Responsable: </strong>Alumno responsable</p>
+                            <p class="col-12"><strong>Fecha inicio: </strong>12/12/2021</p>
+                            <p class="col-12"><strong>Fecha fin: </strong>12/12/2021</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-5  col-sm-12">
+                    <div class="row">
+                        <div class="col-10">
+                            <h3>Tareas asignadas</h5>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary">
+                                Crear nueva tarea
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="table mt-5">
+                        <thead class="thead-primary text-center">
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Fecha asignacion</th>
+                            <th>Fecha limite</th>
+                            <th>Estado</th>
+                            <th>Calificacion</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                          <tr>
+                            <td>Tarea 1</td>
+                            <td>12-12-2021</td>
+                            <td>12-12-2021</td>
+                            <td>En proceso</td>
+                            <td>-</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>Tarea 2</td>
+                            <td>12-12-2021</td>
+                            <td>12-12-2021</td>
+                            <td>En proceso</td>
+                            <td>-</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>Tarea 1</td>
+                            <td>12-12-2021</td>
+                            <td>12-12-2021</td>
+                            <td>Terminada</td>
+                            <td>-</td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    Calificar
+                                </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </main>
+        </section>
+    </main>
+</div>
+<%- include('../template/footer.ejs') %>

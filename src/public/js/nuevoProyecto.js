@@ -90,7 +90,11 @@ const enviarFormulario = (e) => {
         fecha_limite: `${e.target.querySelector('[name="fecha_limite"]').value}`,
         nrc: `${Number.parseInt(e.target.querySelector('[name="nrc"]').value)}`,
         descripcion: `${e.target.querySelector('[name="descripcion"]').value}`,
+<<<<<<< HEAD
         coordinador: 201749575,
+=======
+        coordinador: `${Number.parseInt(e.target.querySelector('[name="coordinador"]').value)}`,
+>>>>>>> b1
         equipo
     })
 

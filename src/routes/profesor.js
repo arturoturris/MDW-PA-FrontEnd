@@ -5,11 +5,19 @@ const profesorController = require('../controllers/profesor.controller')
 router.get('/',
     profesorController.renderMaterias);
 
-router.get('/details',
+router.get('/details/:id_proyecto',
     profesorController.renderDetalles);
 
-router.get('/:NRC',
-    profesorController.renderMateria);
+router.get('/asignacion',
+    profesorController.renderAsignacion);
 
+router.get('/cierre',
+    profesorController.renderCierre);
+
+router.get('/reporte',
+    profesorController.renderReporte);
+
+router.get('/:nrc',
+    profesorController.renderMateria);
 
 module.exports=router;

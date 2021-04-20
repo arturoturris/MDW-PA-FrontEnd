@@ -25,9 +25,11 @@
                             <h3>Tareas asignadas</h5>
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-primary">
+                            <a href="/profesor/creartarea/<%= projects[0].id_proyecto %>">
+                            <button class="btn btn-primary btn-block">
                                 Crear nueva tarea
                             </button>
+                        </a>
                         </div>
                     </div>
 
@@ -36,41 +38,28 @@
                           <tr>
                             <th>Nombre</th>
                             <th>Fecha asignacion</th>
-                            <th>Fecha limite</th>
+                            <th>Descripcion</th>
                             <th>Estado</th>
                             <th>Calificacion</th>
                             <th>Acciones</th>
                           </tr>
                         </thead>
+
                         <tbody class="text-center">
-                          <tr>
-                            <td>Tarea 1</td>
-                            <td>12-12-2021</td>
-                            <td>12-12-2021</td>
-                            <td>En proceso</td>
+                        <tr>
+                            <% if(Object.values(projects[0]).length == 1){ %>
+                            <td colspan="6"><h3>A&uacute;n no ha asignado tareas</h3></td>
+                            <% }else{ %>
+                            <% projects.forEach(asignacion =>{ %>
+                          
+                            <td><%= asignacion.nombre %></td>
+                            <td><%= asignacion.fecha_asignacion %></td>
+                            <td><%= asignacion.descripcion %></td>
+                            <td>-</td>
                             <td>-</td>
                             <td></td>
                           </tr>
-                          <tr>
-                            <td>Tarea 2</td>
-                            <td>12-12-2021</td>
-                            <td>12-12-2021</td>
-                            <td>En proceso</td>
-                            <td>-</td>
-                            <td></td>
-                          </tr>
-                          <tr>
-                            <td>Tarea 1</td>
-                            <td>12-12-2021</td>
-                            <td>12-12-2021</td>
-                            <td>Terminada</td>
-                            <td>-</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    Calificar
-                                </button>
-                            </td>
-                          </tr>
+                        <% })} %>
                         </tbody>
                       </table>
                 </div>

@@ -45,13 +45,18 @@ function renderMateria(req,res){
 }
 
 function renderAsignacion(req,res){
-    res.render("profesor/asignacion",{
+    fetch(`${API_URL}asignacion/${req.params.id_proyecto}`)
+    .then(promiseFetch=>promiseFetch.json())
+    .then(projects => {
+        console.log(projects)
+        res.render("profesor/asignacion",{
         pageTitle:"Asignacion",
         usuario: req.usuario.nombre,
-        //projects:projects,
+        projects,
         menuSelection: 'Materias',
         role: 'PROFESOR'
-    });
+        });
+    })
 }
 
 function renderCierre(req,res){
@@ -74,11 +79,23 @@ function renderReporte(req,res){
     });
 }
 
+function renderCrearTarea(req,res){
+    res.render("profesor/crearTarea",{
+        pageTitle:"Crear Tarea",
+        usuario:`${req.usuario.nombre}`,
+        api:`${API_URL}`,
+        id_proyecto:req.params.id_proyecto,
+        menuSelection: 'Materias',
+        role: 'PROFESOR'
+    });
+}
+
 module.exports = {
     renderMaterias,
     renderDetalles,
     renderMateria,
     renderAsignacion,
     renderCierre,
-    renderReporte
+    renderReporte,
+    renderCrearTarea
 };

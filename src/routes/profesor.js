@@ -8,7 +8,7 @@ router.get('/',
 router.get('/details/:id_proyecto',
     profesorController.renderDetalles);
 
-router.get('/asignacion',
+router.get('/asignacion/:id_proyecto',
     profesorController.renderAsignacion);
 
 router.get('/cierre',
@@ -16,6 +16,9 @@ router.get('/cierre',
 
 router.get('/reporte',
     profesorController.renderReporte);
+    
+router.get('/creartarea/:id_proyecto',
+    profesorController.renderCrearTarea);
 
 router.get('/:nrc',
     profesorController.renderMateria);

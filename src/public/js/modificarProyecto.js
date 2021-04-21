@@ -17,9 +17,9 @@ async function loadFields(){
     
     document.querySelector('input[name="nombre_proyecto"]').value = proyecto.nombre_proyecto
     document.querySelector('input[name="descripcion"]').value = proyecto.descripcion
-    document.querySelector('input[name="fecha_inicio"]').value = proyecto.fecha_inicio.substring(0,10)
-    document.querySelector('input[name="fecha_limite"]').value = proyecto.fecha_limite ? proyecto.fecha_limite.substring(0,10) : ''
-    document.querySelector('input[name="fecha_fin"]').value = proyecto.fecha_fin ? proyecto.fecha_fin.substring(0,10) : ''
+    document.querySelector('input[name="fecha_inicio"]').value = proyecto.fecha_inicio
+    document.querySelector('input[name="fecha_limite"]').value = proyecto.fecha_limite || ''
+    document.querySelector('input[name="fecha_fin"]').value = proyecto.fecha_fin || ''
 }
 
 function enviarFormulario(e){

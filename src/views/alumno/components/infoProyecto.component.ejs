@@ -13,9 +13,9 @@
         </div>
         <div class="">
             <p class="font-weight-bold">Fecha inicio:</p>
-            <p><%= proyecto.fecha_inicio.substring(0,10) %></p>
+            <p><%= proyecto.fecha_inicio %></p>
             <p class="font-weight-bold">Fecha límite:</p>
-            <p><%= proyecto.fecha_limite ? proyecto.fecha_limite.substring(0,10) : '-' %></p>
+            <p><%= proyecto.fecha_limite || '-' %></p>
         </div>
     </div>
     <div class="col-md-4 mb-2">

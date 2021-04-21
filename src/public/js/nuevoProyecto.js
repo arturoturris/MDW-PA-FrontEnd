@@ -102,16 +102,37 @@ const enviarFormulario = (e) => {
         headers: {"Content-Type": "application/json"},
         body
     })
-    .then(res => {
+    .then(async res => {
         if(res.status === 201)
             return {status: 201}    
-        return res.json()
+        return {status: res.status, ...await res.json()}
     })
     .then(res => {
         LoadingBar.close()
 
-        if(res.status === 201)
-            alert('PROYECTO CREADO')
+        if(res.status === 201){
+            Swal.fire({
+                title: 'Proyecto creado',
+                icon: 'success'
+            })
+            .then(() => {
+                window.location.href = '/alumno/misProyectos'
+            })
+        }
+        else if(res.status === 422){
+            Swal.fire({
+                title: 'Campos erroneos',
+                text: 'Algunos de los campos introducidos no tienen el formato apropiado.',
+                icon: 'warning'
+            })
+        }
+        else{
+            Swal.fire({
+                title: 'Error del servidor',
+                text: res.error || res.message,
+                icon: 'error'
+            })
+        }
     })
     .catch(err => {
         LoadingBar.close()

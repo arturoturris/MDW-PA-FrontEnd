@@ -134,6 +134,12 @@ p {
   color: var(--text);
 }
 
+.h-nav {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
 @media screen and (min-width: 720px) {
   .main-grid {
     display: grid;
@@ -188,8 +194,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 2fr;
     justify-content: start;
-    margin: 1rem 0;
-    /* border-top: 1px solid white; */
+    padding: 1rem 0;
   }
 
   .nav-option span {

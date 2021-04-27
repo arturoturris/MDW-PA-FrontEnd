@@ -7,7 +7,7 @@
                 <p class="card-text"><strong>Estado: </strong><%= etapa.estado %></p>
                 <p class="card-text"><strong>Fecha de inicio: </strong><%= etapa.fecha_inicio %></p>
                 <p class="card-text"><strong>Fecha de termino: </strong><%= etapa.fecha_fin || '-' %></p>
-                <a href="#" class="btn btn-primary">Ver etapa</a>
+                <a href="etapas/<%= etapa.id_etapa %>" class="btn btn-primary">Ver etapa</a>
             </div>
         </div>     
     <% } %>

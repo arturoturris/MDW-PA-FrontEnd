@@ -4,17 +4,17 @@
     <main>
         <section>
             <main>
-                <h2 class="display-4">Proyecto 1</h2>
+                <h2 class="display-4"><%= details.nombre_proyecto %></h2>
                 <div class="row align-items-center">
                     <div class="col-8">
                         <h4>Descripci&oacute;n</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae veniam voluptatibus numquam corporis nulla quod dolor vero quis dignissimos. Quos unde dignissimos pariatur fugiat quae vel? Aliquid ea perferendis aperiam.</p> 
+                        <p><%= details.descripcion %></p> 
                     </div>
                     <div class="col-4">
                         <div class="row col-lg-6 col-sm-12 mt-3 ">
                             <p class="col-12"><strong>Responsable: </strong>Alumno responsable</p>
-                            <p class="col-12"><strong>Fecha inicio: </strong>12/12/2021</p>
-                            <p class="col-12"><strong>Fecha fin: </strong>12/12/2021</p>
+                            <p class="col-12"><strong>Fecha inicio: </strong><%= details.fecha_inicio %></p>
+                            <p class="col-12"><strong>Fecha fin: </strong><%= details.fecha_fin %></p>
                         </div>
                     </div>
                 </div>
@@ -40,6 +40,17 @@
                                     <label for="fecha-entregable">Fecha de entrega</label>
                                     <input type="date" class="form-control" name="fecha-entregable" required>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <label for="etapa-entregable">Etapa del entregable</label>
+                                <select name="etapa-entregable" id="">
+                                    <option value="" disabled selected>Etapa</option>
+                                    <% for(let etapa of etapas) { %>
+                                        <option value="<%= etapa.id_etapa %>"><%= etapa.nombre %></option>
+                                    <% } %>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

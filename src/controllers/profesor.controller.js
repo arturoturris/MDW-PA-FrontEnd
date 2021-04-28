@@ -48,7 +48,7 @@ function renderAsignacion(req,res){
     fetch(`${API_URL}asignacion/${req.params.id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
     .then(projects => {
-        console.log(projects)
+        //console.log(projects)
         res.render("profesor/asignacion",{
         pageTitle:"Asignacion",
         usuario: req.usuario.nombre,
@@ -80,13 +80,23 @@ function renderReporte(req,res){
 }
 
 function renderCrearTarea(req,res){
-    res.render("profesor/crearTarea",{
-        pageTitle:"Crear Tarea",
-        usuario:`${req.usuario.nombre}`,
-        api:`${API_URL}`,
-        id_proyecto:req.params.id_proyecto,
-        menuSelection: 'Materias',
-        role: 'PROFESOR'
+    fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
+    .then(promiseFetch=>promiseFetch.json())
+    .then(details => {
+        fetch(`${API_URL}etapas/${req.params.id_proyecto}`)
+        .then(promiseFetch=>promiseFetch.json())
+        .then(etapas =>{
+            res.render("profesor/crearTarea",{
+                pageTitle:"Crear Tarea",
+                usuario: req.usuario.nombre,
+                details,
+                etapas,
+                api:`${API_URL}`,
+                id_proyecto:req.params.id_proyecto,
+                menuSelection: 'Materias',
+                role: 'PROFESOR'
+            })
+        });
     });
 }
 

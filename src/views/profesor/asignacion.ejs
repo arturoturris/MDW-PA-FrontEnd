@@ -4,16 +4,16 @@
     <main>
         <section>
             <main>
-                <h2 class="display-4">Proyecto 1</h2>
+                <h2 class="display-4"><%= projects.infoProyecto[0].nombre_proyecto %></h2>
                 <div class="row align-items-center">
                     <div class="col-8">
                         <h4>Descripci&oacute;n</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae veniam voluptatibus numquam corporis nulla quod dolor vero quis dignissimos. Quos unde dignissimos pariatur fugiat quae vel? Aliquid ea perferendis aperiam.</p> 
+                        <p><%= projects.infoProyecto[0].descripcion %></p> 
                     </div>
                     <div class="col-4">
                         <div class="row col-lg-6 col-sm-12 mt-3 justify-content-end">
                             <p class="col-12"><strong>Responsable: </strong>Alumno responsable</p>
-                            <p class="col-12"><strong>Fecha inicio: </strong>12/12/2021</p>
+                            <p class="col-12"><strong>Fecha inicio: </strong><%= projects.infoProyecto[0].fecha_inicio %></p>
                             <p class="col-12"><strong>Fecha fin: </strong>12/12/2021</p>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                             <h3>Tareas asignadas</h5>
                         </div>
                         <div class="col-2">
-                            <a href="/profesor/creartarea/<%= projects[0].id_proyecto %>">
+                            <a href="/profesor/creartarea/<%= projects.result1[0].id_proyecto %>">
                             <button class="btn btn-primary btn-block">
                                 Crear nueva tarea
                             </button>
@@ -47,10 +47,10 @@
 
                         <tbody class="text-center">
                         <tr>
-                            <% if(Object.values(projects[0]).length == 1){ %>
+                            <% if (Object.values(projects.result1[0]).length == 1){ %>
                             <td colspan="6"><h3>A&uacute;n no ha asignado tareas</h3></td>
                             <% }else{ %>
-                            <% projects.forEach(asignacion =>{ %>
+                            <% projects.result1.forEach(asignacion =>{ %>
                           
                             <td><%= asignacion.nombre %></td>
                             <td><%= asignacion.fecha_asignacion %></td>

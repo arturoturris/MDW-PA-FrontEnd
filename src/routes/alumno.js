@@ -24,5 +24,7 @@ router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables',
     alumnoController.renderEntregablesEtapa)
 router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables/:id_entregable',
     alumnoController.renderEntregable)
+router.get('/misProyectos/:id_proyecto/equipo',
+    alumnoController.renderEquipo)
 
 module.exports = router

@@ -129,6 +129,21 @@ async function renderEntregable(req,res){
     })
 }
 
+async function renderEquipo(req,res){
+    const {id_proyecto} = req.params
+    const proyecto = await getInfoProyecto(id_proyecto)
+
+    res.render('alumno/pages/equipo.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Equipo - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        projectMenuSelection: 'Equipo',
+        proyecto,
+        id_proyecto: proyecto.id_proyecto
+    })
+}
+
 function getProyectos(matricula){
     return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
         method: 'GET'
@@ -242,5 +257,6 @@ module.exports = {
     redirectToLandingEtapa,
     renderEntregablesEtapa,
     renderModificarEtapa,
-    renderEntregable
+    renderEntregable,
+    renderEquipo
 }

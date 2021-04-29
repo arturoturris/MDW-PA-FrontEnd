@@ -83,7 +83,7 @@ function renderCrearTarea(req,res){
     fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
     .then(details => {
-        fetch(`${API_URL}etapas/${req.params.id_proyecto}`)
+        fetch(`${API_URL}proyectos/${req.params.id_proyecto}/etapas`)
         .then(promiseFetch=>promiseFetch.json())
         .then(etapas =>{
             res.render("profesor/crearTarea",{

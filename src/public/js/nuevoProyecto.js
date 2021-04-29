@@ -86,6 +86,10 @@ const enviarFormulario = (e) => {
     LoadingBar.show()
 
     const equipo = obtenerEquipo()
+    const coordinador = Number.parseInt(e.target.querySelector('[name="coordinador"]').value)
+
+    if(!equipo.includes(coordinador))
+        equipo.push(coordinador)
 
     const body = JSON.stringify({
         nombre_proyecto: `${e.target.querySelector('[name="nombre_proyecto"]').value}`,
@@ -93,7 +97,7 @@ const enviarFormulario = (e) => {
         fecha_limite: `${e.target.querySelector('[name="fecha_limite"]').value}`,
         nrc: `${Number.parseInt(e.target.querySelector('[name="nrc"]').value)}`,
         descripcion: `${e.target.querySelector('[name="descripcion"]').value}`,
-        coordinador: `${Number.parseInt(e.target.querySelector('[name="coordinador"]').value)}`,
+        coordinador,
         equipo
     })
 
@@ -144,7 +148,11 @@ const obtenerEquipo = () => {
     let integrantes = document.querySelectorAll('#integrantes input[name="matricula"]')
     let equipo = []
 
-    integrantes.forEach(integrante => equipo.push(Number.parseInt(integrante.value)))
+    integrantes.forEach(integrante => {
+        const matricula = Number.parseInt(integrante.value)
+        if(!equipo.includes(matricula))
+            equipo.push(matricula)
+    })
 
     return equipo
 }

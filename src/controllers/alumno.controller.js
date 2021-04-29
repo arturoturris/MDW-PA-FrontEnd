@@ -79,6 +79,71 @@ async function renderNuevaEtapa(req,res){
     })
 }
 
+async function renderModificarEtapa(req,res){
+    const {id_proyecto,id_etapa} = req.params
+    const etapa = await getEtapaProyecto(id_proyecto,id_etapa)
+
+    res.render('alumno/pages/modificarEtapa.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Nueva etapa - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        etapaMenuSelection: '',
+        id_proyecto,
+        etapa
+    })
+}
+
+function redirectToLandingEtapa(req,res){
+    res.redirect(`/alumno/misProyectos/${req.params.id_proyecto}/etapas/${req.params.id_etapa}/entregables`)
+}
+
+async function renderEntregablesEtapa(req,res){
+    const {id_proyecto,id_etapa} = req.params
+    const etapa = await getEtapaProyecto(id_proyecto,id_etapa)
+    const entregables = await getEntregablesEtapa(id_proyecto,id_etapa)
+
+    res.render('alumno/pages/etapa.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Entregables - Etapa ${id_etapa} - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        etapaMenuSelection: 'Entregables',
+        id_proyecto,
+        etapa,
+        entregables
+    })
+}
+
+async function renderEntregable(req,res){
+    const {id_proyecto,id_etapa,id_entregable} = req.params
+    const entregable = await getEntregable(id_entregable)
+
+    res.render('alumno/pages/entregable.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Entregable X - Etapa ${id_etapa} - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        entregable,
+        API_URL
+    })
+}
+
+async function renderEquipo(req,res){
+    const {id_proyecto} = req.params
+    const proyecto = await getInfoProyecto(id_proyecto)
+
+    res.render('alumno/pages/equipo.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Equipo - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        projectMenuSelection: 'Equipo',
+        proyecto,
+        id_proyecto: proyecto.id_proyecto
+    })
+}
+
 function getProyectos(matricula){
     return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
         method: 'GET'
@@ -139,6 +204,48 @@ function getEtapasProyecto(id_proyecto){
     })
 }
 
+function getEtapaProyecto(id_proyecto,id_etapa){
+    return fetch(`${API_URL}proyectos/${id_proyecto}/etapas/${id_etapa}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(etapa => etapa)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
+}
+
+function getEntregablesEtapa(id_proyecto,id_etapa){
+    return fetch(`${API_URL}entregables/${id_proyecto}/${id_etapa}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(entregables => entregables)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
+}
+
+function getEntregable(id_entregable){
+    return fetch(`${API_URL}entregables/${id_entregable}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(entregable => entregable)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
+}
+
 module.exports = {
     redirectToLandingPage,
     renderProyectos,
@@ -146,5 +253,10 @@ module.exports = {
     renderProyecto,
     renderModificarProyecto,
     redirectToLandingProyecto,
-    renderNuevaEtapa
+    renderNuevaEtapa,
+    redirectToLandingEtapa,
+    renderEntregablesEtapa,
+    renderModificarEtapa,
+    renderEntregable,
+    renderEquipo
 }

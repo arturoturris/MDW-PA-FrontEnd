@@ -16,5 +16,15 @@ router.get('/misProyectos/:id_proyecto/etapas',
     alumnoController.renderProyecto)
 router.get('/misProyectos/:id_proyecto/etapas/nuevaEtapa',
     alumnoController.renderNuevaEtapa)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa',
+    alumnoController.redirectToLandingEtapa)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/modificarEtapa',
+    alumnoController.renderModificarEtapa)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables',
+    alumnoController.renderEntregablesEtapa)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables/:id_entregable',
+    alumnoController.renderEntregable)
+router.get('/misProyectos/:id_proyecto/equipo',
+    alumnoController.renderEquipo)
 
 module.exports = router

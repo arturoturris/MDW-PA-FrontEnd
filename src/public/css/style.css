@@ -140,6 +140,11 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
+.table td,
+.table th {
+  text-align: center;
+}
+
 @media screen and (min-width: 720px) {
   .main-grid {
     display: grid;

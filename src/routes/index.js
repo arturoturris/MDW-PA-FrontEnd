@@ -9,10 +9,14 @@ router.use('/',loginController.signedIn) //SI ESTÁ LOGGEADO ENTONCES CARGA LAS 
 //A PARTIR DE AQUI SE PUEDE USAR EL OBJETO (req.usuario)
 
 //ALUMNO
-router.use('/alumno',require('./alumno'))
+router.use('/alumno',
+    loginController.isAlumno,
+    require('./alumno'))
 
 //PROFESOR
-router.use('/profesor',require('./profesor'))
+router.use('/profesor',
+    loginController.isProfesor,
+    require('./profesor'))
 
 router.use('/',(req,res) => {
     if(req.usuario.rol === 'ALUMNO')

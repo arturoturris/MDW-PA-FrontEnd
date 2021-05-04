@@ -30,7 +30,7 @@ function signIn(e) {
         const {status} = res
 
         if(status === 200){
-            document.cookie = `token=${res.token}`
+            document.cookie = `token=${res.token}; Path=/`
             
             Swal.fire({
                 title: 'Autenticado',

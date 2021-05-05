@@ -1,4 +1,10 @@
 <div class="profile">
     <img src="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png" alt="Foto de perfil"/>
-    <span><%= usuario %></span>
+    <div class="d-flex flex-column align-items-center my-4">
+        <span>
+            <i class="mini fas <%= role === 'ALUMNO' ? 'fa-pencil-alt' : 'fa-chalkboard-teacher' %>"></i>
+            <span class="mini"><%= role %></span>
+        </span>
+        <span class="font-weight-bold"><%= usuario %></span>
+    </div>
 </div>

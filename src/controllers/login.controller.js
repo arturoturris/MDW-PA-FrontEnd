@@ -50,8 +50,22 @@ async function signedIn(req,res,next){
     })
 }
 
+function isAlumno(req,res,next){
+    req.usuario.rol === 'ALUMNO' ?
+        next() :
+        res.redirect('/profesor')
+}
+
+function isProfesor(req,res,next){
+    req.usuario.rol === 'PROFESOR' ?
+        next() :
+        res.redirect('/alumno')
+}
+
 module.exports = {
     renderSignUp,
     renderSignIn,
-    signedIn
+    signedIn,
+    isAlumno,
+    isProfesor
 }

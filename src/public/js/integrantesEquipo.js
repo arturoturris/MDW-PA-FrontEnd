@@ -154,7 +154,7 @@ const cargarNuevoIntegrante = integrante => {
     const span = document.createElement('span')
     const estado = document.createElement('span')
     const rol = document.createElement('span')
-    const btnCambiarRol = document.createElement('input')
+    // const btnCambiarRol = document.createElement('input')
     const btnExpulsar = document.createElement('input')
 
     contenedor.setAttribute('class','list-item')
@@ -167,9 +167,9 @@ const cargarNuevoIntegrante = integrante => {
     img.setAttribute('src','https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png')
     span.setAttribute('class','text-center')
     span.innerHTML = `${integrante.matricula} - ${integrante.nombre} ${integrante.paterno} ${integrante.materno}`
-    btnCambiarRol.setAttribute('type','button')
-    btnCambiarRol.setAttribute('value','Cambiar rol')
-    btnCambiarRol.setAttribute('class','btn btn-primary')
+    // btnCambiarRol.setAttribute('type','button')
+    // btnCambiarRol.setAttribute('value','Cambiar rol')
+    // btnCambiarRol.setAttribute('class','btn btn-primary')
     btnExpulsar.setAttribute('type','button')
     btnExpulsar.setAttribute('value','Expulsar')
     btnExpulsar.setAttribute('class','btn btn-danger')
@@ -193,7 +193,7 @@ const cargarNuevoIntegrante = integrante => {
     td1.appendChild(span)
     td2.appendChild(estado)
     td3.appendChild(rol)
-    td4.appendChild(btnCambiarRol)
+    // td4.appendChild(btnCambiarRol)
     td4.appendChild(btnExpulsar)
 
     integrantes.appendChild(contenedor)

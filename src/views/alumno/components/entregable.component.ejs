@@ -1,86 +1,14 @@
 <section class="mt-2">
     <p class="title pb-2 border-bottom">Entregable: <%= entregable.nombre %> </p>
     <div id="detalles">
-        <div class="border-bottom">
-            <div class="d-flex justify-content-around flex-wrap">
-                <div class="mb-3 d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Proyecto</p>
-                    <a href="/alumno/misProyectos/<%= entregable.Etapa.Proyecto.id_proyecto %>/"><%= entregable.Etapa.Proyecto.nombre_proyecto %></a>
-                </div>
-                <div class="mb-3 d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Etapa</p>
-                    <a href="/alumno/misProyectos/<%= entregable.Etapa.Proyecto.id_proyecto %>/etapas/<%= entregable.Etapa.id_etapa %>"><%= entregable.Etapa.nombre %></a>
-                </div>
-                <div class="mb-3 d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Fecha asignación</p>
-                    <p><%= entregable.fecha_asignacion %></p>
-                </div>
-                <div class="mb-3 d-flex flex-column align-items-center flex-wrap">
-                    <p class="font-weight-bold">Fecha límite</p>
-                    <p><%= entregable.fecha_limite || '-' %></p>
-                </div>
-                <div class="mb-3 d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Estado</p>
-                    <p><%= entregable.entregado ? 'ENTREGADO' : 'PENDIENTE' %></p>
-                </div>
-                <div class="mb-3 d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Rubrica</p>
-                    <% if(entregable.url_rubrica) { %> 
-                        <a href="<%= `${API_URL}entregables/${entregable.id_entregable}/rubrica` %>" download>
-                            <i class="fas fa-download"></i>
-                            <span>Descargar</p>
-                        </a>
-                    <% } %> 
-                </div>
-            </div>
-            <div class="mb-2 d-flex flex-column align-items-center">
-                <p class="font-weight-bold">Descripción del entregable</p>
-                <p class="text-justify"><%= entregable.descripcion %> </p>
-            </div>
-        </div>
+        <% 
+            // DEFINIR SI LA TAREA HA SIDO TARDIA
+            entregable.fechaLimiteVencida = new Date(entregable.fecha_limite) <= new Date() 
+        %> 
+        <%- include('./infoEntregable.component.ejs') %> 
         <div class="row d-flex justify-content-around mt-4 ml-0 mr-0">
-            <div class="col-md-5 mb-4 shadow">
-                <p class="title text-primary">Entrega</p>
-                <% if(entregable.entregado) {%>
-                    <div class="mb-2">
-                        <div class="mb-3 d-flex flex-column align-items-center">
-                            <p class="font-weight-bold">Fecha entrega</p>
-                            <span class="mr-3"><%= entregable.fecha_entrega %></span>
-                        </div>
-                        <div class="mb-3 d-flex flex-column align-items-center">
-                            <p class="font-weight-bold">Archivo entregado</p>
-                            <div class="mb-2">
-                                <i class="fas fa-file-alt mr-1"></i>
-                                <span class="mr-3"><%= entregable.url_entregable.split('/').reverse()[0] %></span>
-                            </div>
-                        </div>
-                        <a href="<%= `${API_URL}entregables/${entregable.id_entregable}/entregable` %>" download class="btn btn-primary btn-block">
-                            <i class="fas fa-download"></i>
-                            <span>Descargar</span>
-                        </a>
-                    </div>
-                <% } else {%> 
-                    <form action="POST" class="mb-2 d-flex flex-column align-items-center mx-auto">
-                        <input type="hidden" name="id_entregable" value="<%= entregable.id_entregable %>">
-                        <div class="form-group">
-                            <label for="entregable" class="font-weight-bold">Archivo</label>
-                            <input type="file" name="entregable" id="entregable" class="form-control-file">
-                        </div>
-                        <input type="submit" value="Enviar archivo" class="btn btn-primary">
-                    </form>
-                <% } %> 
-            </div>
-            <div class="col-md-5 mb-4 shadow">
-                <p class="title text-primary">Recepción</p>
-                <div class="d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Calificación</p>
-                    <p class="title mt-0"><%= entregable.calificacion || '-' %> </p>
-                </div>
-                <div class="d-flex flex-column align-items-center">
-                    <p class="font-weight-bold">Observaciones del profesor</p>
-                    <p class=text-justify><%= entregable.observaciones %> </p>
-                </div>
-            </div>
+            <%- include('./entregable-entrega.component.ejs') %> 
+            <%- include('./entregable-recepcion.component.ejs') %> 
         </div>
     </div>
 </section>

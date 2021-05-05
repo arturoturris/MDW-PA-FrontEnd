@@ -144,6 +144,37 @@ async function renderEquipo(req,res){
     })
 }
 
+async function renderResumen(req,res){
+    const {id_proyecto} = req.params
+    const proyecto = await getInfoProyecto(id_proyecto)
+    const entregables = await getEntregbalesProyecto(id_proyecto)
+
+    res.render('alumno/pages/resumen.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Resúmen - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        projectMenuSelection: 'Resúmen',
+        proyecto,
+        id_proyecto: proyecto.id_proyecto,
+        entregables
+    })
+}
+
+async function renderNotificaciones(req,res){
+    const {id_usuario} = req.usuario
+    const notificaciones = await getNotificaciones(id_usuario)
+
+    res.render('alumno/pages/notificaciones.page.ejs',{
+        usuario: req.usuario.nombre,
+        id_usuario,
+        pageTitle: 'Notificaciones',
+        menuSelection: 'Notificaciones',
+        role: 'ALUMNO',
+        notificaciones
+    })
+}
+
 function getProyectos(matricula){
     return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
         method: 'GET'
@@ -246,6 +277,34 @@ function getEntregable(id_entregable){
     })
 }
 
+function getNotificaciones(id_usuario){
+    return fetch(`${API_URL}usuarios/${id_usuario}/notificaciones`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return []
+    })
+    .then(entregable => entregable)
+    .catch(err => {
+        console.error(err)
+        return []
+    })
+}
+
+function getEntregbalesProyecto(id_proyecto){
+    return fetch(`${API_URL}proyectos/${id_proyecto}/entregables`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return []
+    })
+    .then(entregables => entregables)
+    .catch(err => {
+        console.error(err)
+        return []
+    })
+}
+
 module.exports = {
     redirectToLandingPage,
     renderProyectos,
@@ -258,5 +317,7 @@ module.exports = {
     renderEntregablesEtapa,
     renderModificarEtapa,
     renderEntregable,
-    renderEquipo
+    renderEquipo,
+    renderNotificaciones,
+    renderResumen
 }

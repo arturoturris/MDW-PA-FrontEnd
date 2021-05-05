@@ -4,6 +4,8 @@ const alumnoController = require('../controllers/alumno.controller.js')
 
 router.get('/',
     alumnoController.redirectToLandingPage)
+router.get('/misNotificaciones',
+    alumnoController.renderNotificaciones)
 router.get('/misProyectos',
     alumnoController.renderProyectos)
 router.get('/misProyectos/nuevoProyecto',
@@ -26,5 +28,7 @@ router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables/:id_entregab
     alumnoController.renderEntregable)
 router.get('/misProyectos/:id_proyecto/equipo',
     alumnoController.renderEquipo)
+router.get('/misProyectos/:id_proyecto/resumen',
+    alumnoController.renderResumen)
 
 module.exports = router

@@ -18,14 +18,17 @@
                             </div>
                             <div class="d-flex flex-column align-items-center">
                                 <% 
+                                    //VERIFICAR SI YA HAN CADUCADO LOS ENTREGABLES
                                     let calificacion = 0
                                     for(let entregable of entregables){
+                                        entregable.fechaLimiteVencida = new Date(entregable.fecha_limite) <= new Date()
+
                                         if(entregable.entregado)
                                             calificacion += entregable.calificacion
                                     }
                                 %> 
                                 <p class="font-weight-bold">Calificación promedio</p>
-                                <p><%= calificacion || '-' %></p>
+                                <p><%= calificacion >= 0 ? `${calificacion} / ${entregables.length * 10}.00` : '-' %></p>
                             </div>
                         </div>
                         <%- include('../components/listaEntregables.component.ejs') %>

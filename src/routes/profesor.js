@@ -11,10 +11,10 @@ router.get('/details/:id_proyecto',
 router.get('/asignacion/:id_proyecto',
     profesorController.renderAsignacion);
 
-router.get('/cierre',
+router.get('/cierre/:id_proyecto',
     profesorController.renderCierre);
 
-router.get('/reporte',
+router.get('/reporte/:id_proyecto',
     profesorController.renderReporte);
     
 router.get('/creartarea/:id_proyecto',
@@ -22,5 +22,8 @@ router.get('/creartarea/:id_proyecto',
 
 router.get('/:nrc',
     profesorController.renderMateria);
+
+router.get('/calificar/:id_proyecto/:id_entregable',
+    profesorController.renderCalificar)
 
 module.exports=router;

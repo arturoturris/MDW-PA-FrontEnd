@@ -18,7 +18,7 @@
                 <td class="text-left"><%= entregado.nombre %></td>
                 <td class="text-left"><%= entregado.descripcion %></td>
                 <td><%= entregado.fecha_asignacion %></td>
-                <td><%= entregado.fecha_limite %></td>
+                <td><%= new Date(entregado.fecha_entrega).toLocaleString() %></td>
                 </tr>
         <% }} %>
     </tbody>

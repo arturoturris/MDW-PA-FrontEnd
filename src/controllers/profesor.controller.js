@@ -69,15 +69,17 @@ function renderCierre(req,res){
     fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
     .then(detalles => {
-        fetch(`${API_URL}cierre/${req.params.id_proyecto}`)
+        fetch(`${API_URL}proyectos/${req.params.id_proyecto}/etapas`)
         .then(promiseFetch=>promiseFetch.json())
-        .then(cierre => {
-            console.log(cierre)
+        .then(async etapas =>{
+            const cierre = etapas.find(etapa => etapa.nombre === "CIERRE")
+            const entregable = cierre ?  await getEntregable(cierre.id_etapa) : null 
             res.render("profesor/pages/cierre.page.ejs",{
                 pageTitle:"Cierre",
                 usuario:`${req.usuario.nombre}`,
                 detalles,
-                cierre,
+                etapas,
+                entregable: entregable || null ,
                 api: API_URL,
                 id_proyecto: req.params.id_proyecto,
                 menuSelection: 'Materias',

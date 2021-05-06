@@ -23,11 +23,17 @@
         <td><%= entregable.fecha_asignacion %></td>
         <td><%= entregable.entregado? "ENTREGADO" : "ASIGNADO" %></td>
         <td><%= entregable.calificacion || '-' %></td>
-        <td><% if(entregable.entregado && !entregable.devuelto && !entregable.calificacion){ %>
+        <td><% if(entregable.entregado && !entregable.devuelto && !entregable.calificacion && entregable.etapa !== 'CIERRE'){ %>
           <a href="/profesor/calificar/<%= `${detalles.id_proyecto}/${entregable.id_entregable}` %>" class="text-white">
             <button class="btn btn-primary">CALIFICAR</button>
           </a>
-          <% }else{ '-' } %>
+          <% }else if(entregable.entregado && !entregable.devuelto && !entregable.calificacion && entregable.etapa === 'CIERRE'){ %>
+            <a href="/profesor/cierre/<%= `${detalles.id_proyecto}` %>" class="text-white">
+              <button class="btn btn-primary">CALIFICAR</button>
+            </a>
+          <% }else { '-' } %> 
+            
+
         </td>
       </tr>
     <% })} %>

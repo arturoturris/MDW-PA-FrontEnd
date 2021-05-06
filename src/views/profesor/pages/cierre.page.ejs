@@ -11,6 +11,9 @@
         </section>
     </main>
 </div>
-
-<script type="module" src="/public/js/crearCierre.js"></script>
+<% if(entregable !== null){ %>
+    <script type="module" src="/public/js/calificar.js"></script>
+<% }else{ %>
+    <script type="module" src="/public/js/crearCierre.js"></script>
+<% } %> 
 <%- include('../../template/footer.ejs') %>

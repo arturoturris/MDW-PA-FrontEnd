@@ -88,19 +88,12 @@
                 <% } %>
 
             </div>
-<<<<<<< Updated upstream
-            <div class="col-md-5 mb-4 shadow">
-                <p class="title text-primary">CALIFICAR</p>
-                <% if(cierre[0].entregado){ %>
-                <form action="<%= `${api}entregables/calificar/${cierre.id_entregable}` %>" method="POST">
-=======
             <div class="col-md-5 mb-4 shadow pl-0 pr-0">
                 <div class="div p-1 bg-primary mb-4 w-100">
                     <p class="title text-center text-white">CALIFICAR</p>
                 </div>
                 <% if(entregable.entregado && !entregable.devuelto){ %>
                 <form action="<%= `${api}entregables/calificar/${entregable.id_entregable}` %>" method="POST">
->>>>>>> Stashed changes
                   <div class="d-flex flex-column align-items-center">
                     <div class="form-group">
                       <label for="observaciones">Observaciones</label>

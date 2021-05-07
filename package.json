@@ -4,7 +4,8 @@
   "description": "Modelos de desarrollo web - Aplicación web de proyectos academicos (Front-end)",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js development",
+    "start": "nodemon src/app.js production"
   },
   "repository": {
     "type": "git",

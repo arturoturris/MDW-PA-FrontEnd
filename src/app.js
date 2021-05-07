@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const {APP_PORT} = require('./config/config')
+const {APP_PORT,APP_HOST,ENV} = require('./config/config')
 const morgan = require('morgan')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -22,5 +22,5 @@ app.use('/',require('./routes/index'))
 
 //SERVER
 app.listen(app.get('port'), (req,res) => {
-    console.log(`WEB APP ON PORT ${app.get('port')}`)
+    console.log(`${ENV.toUpperCase()} - WEB APP WORKING ON ${APP_HOST}`)
 })

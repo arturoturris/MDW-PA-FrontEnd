@@ -27,7 +27,7 @@ function crearEntregable(e) {
 
       if(res.status === 201){
         Swal.fire({
-            title: 'Entregble creado',
+            title: 'Cierre creado',
             icon: 'success'
         }).then(() => {
             window.location.href=`/profesor/details/${id_proyecto}`

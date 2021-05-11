@@ -1,9 +1,10 @@
+<h3>Trabajo final</h3>
 <div class="container mt-5">
-    <% if(cierre.length === 0){ %>
+    <% if(entregable === null){ %>
     <form action="<%= api %>archivos/<%= id_proyecto %>/?cierre=true" method="POST" enctype="multipart/form-data">
     <div class="row">
         <div class="col-8">
-            <h3>Asignaci&oacute;n de entregable</h3>
+            <h3>Asignaci&oacute;n de entregable final</h3>
         </div>
         
         <div class="col-4">
@@ -38,28 +39,28 @@
                     <p class="title text-center text-white">Entrega</p>
                 </div>
                 
-                <% if(cierre[0].entregado){ %>
+                <% if(entregable.entregado){ %>
                     <div class="mb-2">
                         <div class="mb-3 d-flex flex-column align-items-center">
                             <div hidden id="id_proyecto"><%= id_proyecto %></div>
                             <p class="font-weight-bold">Fecha entrega</p>
-                            <span class="mr-3"><%= cierre.fecha_entrega %></span>
+                            <span class="mr-3"><%= entregable.fecha_entrega %></span>
                         </div>
                         <div class="mb-3 d-flex flex-column align-items-center">
                             <p class="font-weight-bold">Archivo entregado</p>
                             <div class="mb-2">
                                 <i class="fas fa-file-alt mr-1"></i>
                                 <span class="mr-3">
-                                    <% if(cierre[0].url_entregable === null){ %> 
+                                    <% if(entregable.url_entregable === null){ %> 
                                         No se entrego ningun archivo 
                                     <% }else{ %> 
-                                        <%= cierre[0].url_entregable.split('/').reverse()[0]  %>
+                                        <%= entregable.url_entregable.split('/').reverse()[0]  %>
                                     <% } %>
                                 </span>
                             </div>
                         </div>
-                        <% if(cierre[0].url_entregable !== null){ %>
-                        <a href="<%= `${api}entregables/${cierre[0].id_entregable}/entregable` %>" download class="btn btn-primary btn-block">
+                        <% if(entregable.url_entregable !== null){ %>
+                        <a href="<%= `${api}entregables/${entregable.id_entregable}/entregable` %>" download class="btn btn-primary btn-block">
                             <i class="fas fa-download"></i>
                             <span>Descargar</span>
                         </a>
@@ -68,11 +69,11 @@
                                 <p class="font-weight-bold">A&uacute;n no se ha entregado el trabajo final</p>
                             </div>
                         <% } %>
-                        <% if(cierre[0].url_entregable !== null){ %>
-                        <% const archivo = cierre[0].url_entregable.split('/').reverse()[0]; %>
-                        <% if(archivo.slice(cierre[0].lastIndexOf('.'),archivo.length) === '.pdf'){ %> 
+                        <% if(entregable.url_entregable !== null){ %>
+                        <% const archivo = entregable.url_entregable.split('/').reverse()[0]; %>
+                        <% if(archivo.slice(archivo.lastIndexOf('.'),archivo.length) === '.pdf'){ %> 
                             <a
-                                href="<%=`${api}entregables/${cierre[0].id_entregable}/verEntregable` %>"
+                                href="<%=`${api}entregables/${entregable.id_entregable}/verEntregable` %>"
                                 class="btn btn-primary btn-block"
                                 target="_blank"
                                 >
@@ -84,7 +85,7 @@
                     </div>
                 <% }else{ %>
                     <div class="d-flex flex-column align-items-center">
-                        <p>No puede evaluar un trabajo no entregado</p>
+                        <p>A&uacute;n no se ha entregado el trabajo final</p>
                     </div>
                 <% } %>
 
@@ -93,8 +94,8 @@
                 <div class="div p-1 bg-primary mb-4 w-100">
                     <p class="title text-center text-white">CALIFICAR</p>
                 </div>
-                <% if(cierre[0].entregado){ %>
-                <form action="<%= `${api}entregables/calificar/${cierre.id_entregable}` %>" method="POST">
+                <% if(entregable.entregado && !entregable.devuelto){ %>
+                <form action="<%= `${api}entregables/calificar/${entregable.id_entregable}` %>" method="POST">
                   <div class="d-flex flex-column align-items-center">
                     <div class="form-group">
                       <label for="observaciones">Observaciones</label>
@@ -135,11 +136,21 @@
                     </div>
                   </div>
                 </form>
-                <% }else{ %>
+                <% }else if(!entregable.calificacion){ %>
                     <div class="d-flex flex-column align-items-center">
                         <p>No puede evaluar un trabajo no entregado</p>
                     </div>
-                <% } %>
+                <% }else if(entregable.devuelto){ %>
+                    <div class="d-flex flex-column align-items-center">
+                        <p class="font-weight-bold">Calificaci&oacute;n</p>
+                        <span class="mr-3"><%= entregable.calificacion %></span>
+                        <p class="font-weight-bold">Observaciones</p>
+                        <span class="mr-3"><%= entregable.observaciones %></span>
+                        <div class="div p-1 mb-4 w-100">
+                            <p class="title text-center ">CALIFICADO</p>
+                        </div>
+                    </div>
+                    <% } %>
               </div>
         </div>
         <% } %>

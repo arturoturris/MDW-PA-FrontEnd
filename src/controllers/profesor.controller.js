@@ -65,19 +65,38 @@ function renderAsignacion(req,res){
     })
 }
 
-function renderCierre(req,res){
-    fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
+async function renderCierre(req,res){
+    // const {id_proyecto} = req.params
+    // const {id_etapa_cierre} = await getIdEtapaCierre(id_proyecto)
+    // const entregable = id_etapa_cierre ?  await getEntregableCierre(id_proyecto,id_etapa_cierre) : null
+
+    // console.log(entregable)
+    // res.render("profesor/pages/cierre.page.ejs",{
+    //     pageTitle:"Cierre",
+    //     usuario:`${req.usuario.nombre}`,
+    //     detalles,
+    //     etapas,
+    //     entregable: entregable || null ,
+    //     api: API_URL,
+    //     id_proyecto: req.params.id_proyecto,
+    //     menuSelection: 'Materias',
+    //     role: 'PROFESOR'
+    // })
+    const {id_proyecto} = req.params
+    fetch(`${API_URL}proyectos/${id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
     .then(detalles => {
-        fetch(`${API_URL}cierre/${req.params.id_proyecto}`)
+        fetch(`${API_URL}proyectos/${id_proyecto}/etapas`)
         .then(promiseFetch=>promiseFetch.json())
-        .then(cierre => {
-            console.log(cierre)
+        .then(async etapas =>{
+            const cierre = etapas.find(etapa => etapa.nombre === "CIERRE")
+            const entregable = cierre ?  await getEntregableCierre(id_proyecto,cierre.id_etapa) : null 
             res.render("profesor/pages/cierre.page.ejs",{
                 pageTitle:"Cierre",
                 usuario:`${req.usuario.nombre}`,
                 detalles,
-                cierre,
+                etapas,
+                entregable: entregable || null ,
                 api: API_URL,
                 id_proyecto: req.params.id_proyecto,
                 menuSelection: 'Materias',
@@ -159,6 +178,13 @@ function getEntregable(id_entregable){
         console.error(err)
         return null
     })
+}
+
+async function getEntregableCierre(id_proyecto,id_etapa_cierre){
+    const res = await fetch(`${API_URL}entregables/${id_proyecto}/${id_etapa_cierre}`)
+    const entregables = await res.json()
+    
+    return entregables[0]
 }
 
 module.exports = {

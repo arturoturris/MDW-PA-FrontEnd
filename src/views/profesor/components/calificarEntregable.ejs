@@ -1,9 +1,7 @@
 <section class="mt-2">
         <div class="row d-flex justify-content-around mt-4 ml-0 mr-0">
-            <div class="col-md-5 mb-4 shadow pl-0 pr-0">
-              <div class="div p-1 bg-primary mb-4 w-100">
-                <p class="title text-center text-white">Entrega</p>
-              </div>
+            <div class="col-md-5 mb-4 shadow">
+                <p class="title text-primary">Entrega</p>
                 <% if(entregable.entregado) {%>
                     <div class="mb-2">
                         <div class="mb-3 d-flex flex-column align-items-center">
@@ -72,6 +70,7 @@
                           name="calificacion"
                           min="0"
                           max="10"
+                          step="0.1"
                           required
                         />
                       </div>

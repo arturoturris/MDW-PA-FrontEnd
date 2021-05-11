@@ -4,7 +4,7 @@ function calificar(e) {
     e.preventDefault()
     LoadingBar.show()
 
-    const id_proyecto = document.getElementById('id_proyecto').textContent
+    const id_proyecto = document.getElementById('id_proyecto').value
     const observaciones = e.target.querySelector('[name="observaciones"]').value
     const calificacion = e.target.querySelector('[name="calificacion"]').value
 

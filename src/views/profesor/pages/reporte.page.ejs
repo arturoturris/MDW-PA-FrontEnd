@@ -17,28 +17,30 @@
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <% 
-                            const fecha = new Date();
+                            const FECHA = new Date();
                             let aEntregados = [];
                             let aPendientes = [];
                             let aVencidos = [];
                             let promedio = 0.0;
-                            for(let entregable of entregables){
+                            for(entregable of entregables){
                                 if(entregable.entregado){
-                                    if(new Date(entregable.fecha_limite) <= fecha)
+                                    if(new Date(entregable.fecha_entrega) <= new Date(entregable.fecha_limite)){
+                                        aEntregados.push(entregable)
+                                        promedio+=entregable.calificacion
+                                    }
+                                }else if(entregable.fecha_entrega === null ){
+                                    if(FECHA <= new Date(entregable.fecha_limite))
+                                        aPendientes.push(entregable)
+                                    else{
                                         aVencidos.push(entregable)
-                                        promedio += entregable.calificacion
-                                    aEntregados.push(entregable)
-                                }
-                                else {
-                                    if(new Date(entregable.fecha_limite) <= fecha)
-                                        aVencidos.push(entregable)    
-                                    aPendientes.push(entregable)
+                                        promedio+=entregable.calificacion
+                                    }
                                 }
                             }
-                            promedio /= entregables.length
+                            promedio/=aEntregados.length + aVencidos.length;
                         %> 
                         <p class="font-weight-bold">Calificaci&oacute;n general</p>
-                        <p><%= promedio.toFixed(2) %></p>
+                        <p><%= isNaN(promedio) ? 0.0 : promedio.toFixed(2) %></p>
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <p class="font-weight-bold">Entregables entregados</p>

@@ -19,11 +19,11 @@ function renderMaterias(req,res){
 function renderDetalles(req,res){
     fetch(`${API_URL}proyectos/${req.params.id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
-    .then(details => {
+    .then(detalles => {
         res.render("profesor/pages/detallesProyecto.page.ejs",{
             pageTitle:"Detalles de Proyecto",
             usuario: req.usuario.nombre,
-            details,
+            detalles,
             menuSelection: 'Materias',
             role: 'PROFESOR'
         })
@@ -51,7 +51,7 @@ function renderAsignacion(req,res){
         fetch(`${API_URL}asignacion/${req.params.id_proyecto}`)
         .then(promiseFetch=>promiseFetch.json())
         .then(entregables => {
-            console.log(entregables)
+            //console.log(entregables)
             res.render("profesor/pages/asignacion.page.ejs",{
             pageTitle:"Asignacion",
             usuario: req.usuario.nombre,
@@ -66,31 +66,15 @@ function renderAsignacion(req,res){
 }
 
 async function renderCierre(req,res){
-    // const {id_proyecto} = req.params
-    // const {id_etapa_cierre} = await getIdEtapaCierre(id_proyecto)
-    // const entregable = id_etapa_cierre ?  await getEntregableCierre(id_proyecto,id_etapa_cierre) : null
-
-    // console.log(entregable)
-    // res.render("profesor/pages/cierre.page.ejs",{
-    //     pageTitle:"Cierre",
-    //     usuario:`${req.usuario.nombre}`,
-    //     detalles,
-    //     etapas,
-    //     entregable: entregable || null ,
-    //     api: API_URL,
-    //     id_proyecto: req.params.id_proyecto,
-    //     menuSelection: 'Materias',
-    //     role: 'PROFESOR'
-    // })
     const {id_proyecto} = req.params
     fetch(`${API_URL}proyectos/${id_proyecto}`)
     .then(promiseFetch=>promiseFetch.json())
     .then(detalles => {
-        fetch(`${API_URL}proyectos/${id_proyecto}/etapas`)
+        fetch(`${API_URL}proyectos/${req.params.id_proyecto}/etapas`)
         .then(promiseFetch=>promiseFetch.json())
         .then(async etapas =>{
             const cierre = etapas.find(etapa => etapa.nombre === "CIERRE")
-            const entregable = cierre ?  await getEntregableCierre(id_proyecto,cierre.id_etapa) : null 
+            const entregable = cierre ?  await getEntregablePorEtapa(req.params.id_proyecto,cierre.id_etapa) : null
             res.render("profesor/pages/cierre.page.ejs",{
                 pageTitle:"Cierre",
                 usuario:`${req.usuario.nombre}`,
@@ -113,7 +97,7 @@ function renderReporte(req,res){
         fetch(`${API_URL}asignacion/${req.params.id_proyecto}/resumen`)
             .then(promiseFetch=>promiseFetch.json())
             .then(entregables => {
-                console.log(entregables)
+                //console.log(entregables)
                 res.render("profesor/pages/reporte.page.ejs",{
                     pageTitle:"Reporte General",
                     usuario:`${req.usuario.nombre}`,
@@ -152,7 +136,7 @@ function renderCalificar(req,res){
     .then(promiseFetch=>promiseFetch.json())
     .then(async detalles => {
         const entregable = await getEntregable(req.params.id_entregable)
-        console.log(entregable)
+        //console.log(entregable)
         res.render("profesor/pages/calificar.page.ejs",{
             pageTitle:"Calificar entregable",
             usuario: req.usuario.nombre,
@@ -180,11 +164,18 @@ function getEntregable(id_entregable){
     })
 }
 
-async function getEntregableCierre(id_proyecto,id_etapa_cierre){
-    const res = await fetch(`${API_URL}entregables/${id_proyecto}/${id_etapa_cierre}`)
-    const entregables = await res.json()
-    
-    return entregables[0]
+function getEntregablePorEtapa(id_proyecto,id_etapa){
+    return fetch(`${API_URL}entregables/${id_proyecto}/${id_etapa}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(entregable => entregable)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
 }
 
 module.exports = {

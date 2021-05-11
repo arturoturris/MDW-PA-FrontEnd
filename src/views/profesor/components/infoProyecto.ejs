@@ -1,15 +1,18 @@
-<h2 class="display-4"><%= detalles.nombre_proyecto %></h2>
-<div class="row align-items-center">
-    <div class="col-lg-8 col-sm-12">
-        <h4>Descripci&oacute;n</h4>
-        <p><%= detalles.descripcion %></p> 
+<div class="pt-2 mx-auto row col-12 justify-content-between d-flex flex-column flex-md-row border-bottom">
+    <div class="col-md-2 mb-2">
+        <a href="/profesor/details/<%= detalles.id_proyecto %>" class="btn btn-block btn-outline-secondary">Ir a detalles</a>
     </div>
-    <div hidden id="id_proyecto"><%= detalles.id_proyecto %></div>
-    <div class="col-lg-4 col-sm-12">
-        <div class="row col-lg-6 col-sm-12 mt-3 justify-content-center">
-            <p class="col-lg-12 col-sm-4"><strong>Responsable: </strong>Alumno responsable</p>
-            <p class="col-lg-12 col-sm-4"><strong>Fecha inicio: </strong><%= detalles.fecha_inicio %></p>
-            <p class="col-lg-12 col-sm-4"><strong>Fecha fin: </strong>12/12/2021</p>
+    <input type="hidden" id="id_proyecto" name="id_proyeceto" value="<%= detalles.id_proyecto %>">
+    <div class="col-md-4 justify-text">
+        <h2><%= detalles.nombre_proyecto %></h2>
+        <p class="text-justify"><%= detalles.descripcion %></p>
+    </div>
+    <div class="col-md-4 d-flex flex-wrap justify-content-between">
+        <div class="">
+            <p class="font-weight-bold">Fecha inicio:</p>
+            <p><%= detalles.fecha_inicio %></p>
+            <p class="font-weight-bold">Fecha límite:</p>
+            <p><%= detalles.fecha_limite || '-' %></p>
         </div>
     </div>
 </div>

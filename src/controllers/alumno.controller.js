@@ -175,91 +175,6 @@ async function renderNotificaciones(req,res){
     })
 }
 
-async function renderTareas(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/tareas.page.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Tareas',
-        menuSelection: 'Tareas',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
-async function renderTarease(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/tarease.page.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Tareas por etapa',
-        menuSelection: 'Tareas por etapa',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
-
-async function renderNuevaTarea(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/nuevaTarea.page.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Nueva Tarea',
-        menuSelection: 'Nueva Tarea',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
-async function renderListaTareas(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/listaTareas.component.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Lista Tareas',
-        menuSelection: 'Lista Tareas',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
-async function renderVistaTarea(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/vistaTarea.component.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Vista Tarea',
-        menuSelection: 'Vista Tarea',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
-async function renderTarea(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/tarea.page.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Tarea',
-        menuSelection: 'Tarea',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
-
 function getProyectos(matricula){
     return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
         method: 'GET'
@@ -404,11 +319,5 @@ module.exports = {
     renderEntregable,
     renderEquipo,
     renderNotificaciones,
-    renderResumen,
-    renderTareas,
-    renderTarease,
-    renderNuevaTarea,
-    renderListaTareas,
-    renderVistaTarea,
-    renderTarea
+    renderResumen
 }

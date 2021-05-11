@@ -2,7 +2,7 @@ import {LoadingBar} from './LoadingBar.js'
 function crearEntregable(e) {
     e.preventDefault()
     let rubrica =  document.querySelector("input[type='file']")
-    let id_proyecto = document.getElementById('id_proyecto').textContent
+    let id_proyecto = document.getElementById('id_proyecto').value
     let formData = new FormData()
     formData.append("nombre",`${e.target.querySelector('[name="nombre-entregable"]').value}`)
     formData.append("instrucciones",`${e.target.querySelector('[name="instrucciones-entregable"]').value}`)

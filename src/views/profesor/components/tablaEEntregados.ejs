@@ -19,7 +19,7 @@
                 <td class="text-left"><%= entregado.nombre %></td>
                 <td class="text-left"><%= entregado.observaciones || '-' %></td>
                 <td><%= entregado.fecha_asignacion || '-' %></td>
-                <td><%= new Date(entregado.fecha_entrega).toLocaleString() || '-'%></td>
+                <td><%= entregado.fecha_entrega || '-'%></td>
                 <td><%= entregado.calificacion || '-' %></td>
                 </tr>
         <% }} %>

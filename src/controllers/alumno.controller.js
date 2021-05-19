@@ -175,7 +175,7 @@ async function renderNotificaciones(req,res){
     })
 }
 
-async function renderTareas(req,res){
+/*async function renderTareas(req,res){
     const {id_usuario} = req.usuario
     const notificaciones = await getNotificaciones(id_usuario)
 
@@ -187,21 +187,8 @@ async function renderTareas(req,res){
         role: 'ALUMNO',
         notificaciones
     })
-}
+}*/
 
-async function renderTarease(req,res){
-    const {id_usuario} = req.usuario
-    const notificaciones = await getNotificaciones(id_usuario)
-
-    res.render('alumno/pages/tarease.page.ejs',{
-        usuario: req.usuario.nombre,
-        id_usuario,
-        pageTitle: 'Tareas por etapa',
-        menuSelection: 'Tareas por etapa',
-        role: 'ALUMNO',
-        notificaciones
-    })
-}
 
 
 async function renderNuevaTarea(req,res){
@@ -246,7 +233,7 @@ async function renderVistaTarea(req,res){
     })
 }
 
-async function renderTarea(req,res){
+/*async function renderTarea(req,res){
     const {id_usuario} = req.usuario
     const notificaciones = await getNotificaciones(id_usuario)
 
@@ -258,7 +245,42 @@ async function renderTarea(req,res){
         role: 'ALUMNO',
         notificaciones
     })
+}*/
+
+
+async function renderTareasEtapa(req,res){
+    const {id_proyecto,id_etapa} = req.params
+    const etapa = await getEtapaProyecto(id_proyecto,id_etapa)
+    const tareas = await getTareasEtapa(id_proyecto,id_etapa)
+
+    res.render('alumno/pages/tarease.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Tareas - Etapa ${id_etapa} - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        etapaMenuSelection: 'Tareas',
+        id_proyecto,
+        etapa,
+        tareas
+    })
 }
+
+
+async function renderTarea(req,res){
+    const {id_proyecto,id_etapa,id_tarea} = req.params
+    const tarea = await getTarea(id_tarea)
+
+    res.render('alumno/pages/tarea.page.ejs',{
+        usuario: req.usuario.nombre,
+        pageTitle: `Tarea X - Etapa ${id_etapa} - Proyecto ${id_proyecto}`,
+        menuSelection: 'Proyectos',
+        role: 'ALUMNO',
+        tarea,
+        API_URL
+    })
+}
+
+
 
 function getProyectos(matricula){
     return fetch(`${API_URL}alumnos/${matricula}/proyectos`,{
@@ -362,6 +384,35 @@ function getEntregable(id_entregable){
     })
 }
 
+function getTareasEtapa(id_proyecto,id_etapa){
+    return fetch(`${API_URL}tareas/${id_proyecto}/${id_etapa}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(tareas => tareas)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
+}
+
+function getTarea(id_tarea){
+    return fetch(`${API_URL}tareas/${id_tarea}`)
+    .then(async res => {
+        if(res.status === 200)
+            return await res.json()
+        return null
+    })
+    .then(tarea => tarea)
+    .catch(err => {
+        console.error(err)
+        return null
+    })
+}
+
+
 function getNotificaciones(id_usuario){
     return fetch(`${API_URL}usuarios/${id_usuario}/notificaciones`)
     .then(async res => {
@@ -405,10 +456,9 @@ module.exports = {
     renderEquipo,
     renderNotificaciones,
     renderResumen,
-    renderTareas,
-    renderTarease,
+    renderTarea,
+    renderTareasEtapa,
     renderNuevaTarea,
     renderListaTareas,
-    renderVistaTarea,
-    renderTarea
+    renderVistaTarea
 }

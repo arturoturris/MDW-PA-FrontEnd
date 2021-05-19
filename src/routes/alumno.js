@@ -8,16 +8,10 @@ router.get('/misNotificaciones',
     alumnoController.renderNotificaciones)
 router.get('/misProyectos',
     alumnoController.renderProyectos)
-router.get('/misTareas',
-    alumnoController.renderTareas)
-router.get('/misTarease',
-    alumnoController.renderTarease)
 router.get('/misTareas/listaTareas',
     alumnoController.renderListaTareas)    
 router.get('/misTareas/nuevaTarea',
     alumnoController.renderNuevaTarea)
-router.get('/misTareas/Tarea',
-    alumnoController.renderTarea)
 router.get('/misTareas/VistaTarea',
     alumnoController.renderVistaTarea)
 router.get('/misProyectos/nuevoProyecto',
@@ -38,9 +32,14 @@ router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables',
     alumnoController.renderEntregablesEtapa)
 router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/entregables/:id_entregable',
     alumnoController.renderEntregable)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/tareas',
+    alumnoController.renderTareasEtapa)
+router.get('/misProyectos/:id_proyecto/etapas/:id_etapa/tareas/:id_tarea',
+    alumnoController.renderTarea)    
 router.get('/misProyectos/:id_proyecto/equipo',
     alumnoController.renderEquipo)
 router.get('/misProyectos/:id_proyecto/resumen',
     alumnoController.renderResumen)
 
 module.exports = router
+

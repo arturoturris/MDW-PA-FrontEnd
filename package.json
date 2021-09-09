@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon src/app.js development",
-    "start": "nodemon src/app.js production"
+    "start": "node src/app.js production"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/arturoturris/MDW-PA-FrontEnd#readme",
   "dependencies": {
     "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "morgan": "^1.10.0",

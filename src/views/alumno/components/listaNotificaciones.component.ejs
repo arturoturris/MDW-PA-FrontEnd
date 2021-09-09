@@ -8,7 +8,7 @@
         <% for(let notificacion of notificacionesNoLeidas){ %>
             <% let imgPath = notificacion.descripcion.includes('equipo') ?
                 '/public/img/codigo.jpg' : 
-                'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png' %>
+                '/public/img/user.jpg' %>
             <div class="row list-item ml-0 mr-0 mb-4">
                 <input type="hidden" name="id_notificacion" value="<%= notificacion.id_notificacion %>">
                 <a href="<%= notificacion.url %> " role="button" class="col-10 bg-light shadow-sm rounded text-decoration-none position-relative p-3">
@@ -29,7 +29,7 @@
         <% for(let notificacion of notificacionesLeidas){ %>
             <% let imgPath = notificacion.descripcion.includes('equipo') ?
                 '/public/img/codigo.jpg' : 
-                'https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png' %>
+                '/public/img/user.jpg' %>
             <div class="row list-item ml-0 mr-0 mb-4">
                 <input type="hidden" name="id_notificacion" value="<%= notificacion.id_notificacion %>">
                 <a href="<%= notificacion.url %> " role="button" class="col-10 bg-light shadow-sm rounded text-decoration-none position-relative p-3">

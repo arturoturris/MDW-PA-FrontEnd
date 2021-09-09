@@ -2,6 +2,8 @@
 
 Web development models - Academic Project Application (Front-end).
 
+Live: https://mdw-pa-frontend.herokuapp.com/
+
 Responsive web application to manage student projects.
 
 As a student you can create projects to manage, invite classmates to collaborate, create project stages, view tasks assigned by the teacher, submit tasks, view reports on project progress.
